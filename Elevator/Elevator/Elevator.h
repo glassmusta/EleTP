@@ -10,7 +10,7 @@ public:
 	bool getFloor(int* Floor, int& Dir,const int& curFloor,int& Goal,const int floor){
 		char tmp;
 		int i=0;
-		//ÀÌ°Ô °ú¿¬ ¹æÇâÀ» ¼³Á¤ÇØ¾ß ÇÏ´Â °ÇÁö È®ÀÎÇÏ´Â ¾Ë°í¸®Áò
+		//ì´ê²Œ ê³¼ì—° ë°©í–¥ì„ ì„¤ì •í•´ì•¼ í•˜ëŠ” ê±´ì§€ í™•ì¸í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜
 		for(int j=1;j<floor;++j){
 			if(Floor[j] == 1) ++i;
 		}
@@ -19,31 +19,31 @@ public:
 			int q = tmp-'0';
 			if(tmp == ' ') continue;
 
-			//Å»Ãâ
+			//íƒˆì¶œ
 			if(tmp == 'q') {
 				return true;
 			}
 
-			//ÀÔ·Â°ªÀÌ floorº¸´Ù Å« °æ¿ì
-			if(q>=floor && tmp != '\n') {cout<<"ÀÔ·Â°ªÀÌ ³Ê¹« Å®´Ï´Ù."<<endl;continue;}
+			//ì…ë ¥ê°’ì´ floorë³´ë‹¤ í° ê²½ìš°
+			if(q>=floor && tmp != '\n') {cout<<"ì…ë ¥ê°’ì´ ë„ˆë¬´ í½ë‹ˆë‹¤."<<endl;continue;}
 
-			//¹æÇâ ¼³Á¤
+			//ë°©í–¥ ì„¤ì •
 			if(i==0 && q<floor){
-				if(tmp == '\n') Dir = Dir; //¾Æ¹«°Íµµ ÀÔ·ÂÇÏÁö ¾ÊÀº °æ¿ì
+				if(tmp == '\n') Dir = Dir; //ì•„ë¬´ê²ƒë„ ì…ë ¥í•˜ì§€ ì•Šì€ ê²½ìš°
 				else if(q>curFloor) Dir = 1;
 				else if(q<curFloor) Dir = -1;
 
-				++i; //Áßº¹ ÀÔ·Â ¹æÁö¿ë
+				++i; //ì¤‘ë³µ ì…ë ¥ ë°©ì§€ìš©
 			}
 
-			//±× Ãş¿¡ »ç¶÷ÀÌ ¾øÀ¸¸ç ÃÑ Ãş ¼ö¸¦ ³ÑÁö ¾ÊÀ¸¸ç ÇöÀçÃş°ú °°Àº °ªÀÌ ¾Æ´Ò¶§
+			//ê·¸ ì¸µì— ì‚¬ëŒì´ ì—†ìœ¼ë©° ì´ ì¸µ ìˆ˜ë¥¼ ë„˜ì§€ ì•Šìœ¼ë©° í˜„ì¬ì¸µê³¼ ê°™ì€ ê°’ì´ ì•„ë‹ë•Œ
 			if(Floor[q] == 0 && q<floor && q!=curFloor) Floor[q] = 1;
 			else{
-				printf("ÇöÀç %d Ãş¿¡´Â »ç¶÷ÀÌ ÀÖ½À´Ï´Ù. ÀÔ·ÂÀ» Ãë¼ÒÇÕ´Ï´Ù.\n",q);
+				printf("í˜„ì¬ %d ì¸µì—ëŠ” ì‚¬ëŒì´ ìˆìŠµë‹ˆë‹¤. ì…ë ¥ì„ ì·¨ì†Œí•©ë‹ˆë‹¤.\n",q);
 			}
 		}
 		fflush(stdin);
-		//ÇöÀç À§Ä¡¿¡¼­ ¸ñÇ¥Á¡ Ã£±â
+		//í˜„ì¬ ìœ„ì¹˜ì—ì„œ ëª©í‘œì  ì°¾ê¸°
 		for(int tmpGoal=(curFloor+Dir);tmpGoal>0 && tmpGoal < floor && Dir!=0;tmpGoal+=Dir){
 			if(Floor[tmpGoal] == 1) Goal = tmpGoal;
 		}
@@ -51,19 +51,19 @@ public:
 	}
 	bool getButton(int*Button,int DifInPerson){
 		char tmp;
-		int q;
+		int q=0;
 
 		for(int i=0;i<DifInPerson;++i){
 			tmp = getchar();
 
-			//Å»Ãâ
+			//íƒˆì¶œ
 			if(tmp == 'q') {
 				return true;
 			}
 
-			//¿£ÅÍ¸¦ ´©¸¥°æ¿ì
+			//ì—”í„°ë¥¼ ëˆ„ë¥¸ê²½ìš°
 			if(tmp == '\n') {
-				Button[q] += ((DifInPerson-i)>0? (DifInPerson-i) : 0);		//¼ıÀÚ ÇÏ³ª¸¸ ÀÔ·ÂÇÑ °æ¿ì ¸ğµç »ç¶÷ÀÌ ±× °÷À¸·Î °¡°Ô ÇÑ´Ù.
+				Button[q] += ((DifInPerson-i)>0? (DifInPerson-i) : 0);		//ìˆ«ì í•˜ë‚˜ë§Œ ì…ë ¥í•œ ê²½ìš° ëª¨ë“  ì‚¬ëŒì´ ê·¸ ê³³ìœ¼ë¡œ ê°€ê²Œ í•œë‹¤.
 				break;
 			}
 			q = tmp-'0';
@@ -87,7 +87,7 @@ public:
 	Elevator(int f=0) : curFloor(1),Goal(1),Dir(0),InPerson(0),floor(f+1){
 		Floor = new int[floor];
 		Button = new int[floor];
-		//µ¿ÀûÇÒ´çÀº ¾îÂ°¼­ÀÎÁö memsetÀÌ ¾ÈµÇ±â¿¡
+		//ë™ì í• ë‹¹ì€ ì–´ì§¸ì„œì¸ì§€ memsetì´ ì•ˆë˜ê¸°ì—
 		for(int i=0;i<floor;++i){
 			Floor[i] = 0;
 			Button[i] = 0;
@@ -98,39 +98,39 @@ public:
 
 	void display(char* str){
 		cout<<endl<<"	"<<str<<endl;
-		printf("	»ç¶÷ÀÌ ÀÖ´Â Ãş(0°ú 1·Î ±¸ºĞ) \n");
+		printf("	ì‚¬ëŒì´ ìˆëŠ” ì¸µ(0ê³¼ 1ë¡œ êµ¬ë¶„) \n");
 		printf("	");
 		for(int i=1;i<floor;++i)	printf("%d ",i);
 		cout<<endl;
 		printf("	");
 		for(int i=1;i<floor;++i)	printf("%d ",Floor[i]);
 		cout<<endl;
-		printf("	¿¤¸®º£ÀÌÅÍ ¹öÆ°(±×ÂÊÀ¸·Î °¥ »ç¶÷ÀÇ ¼ö) \n");
+		printf("	ì—˜ë¦¬ë² ì´í„° ë²„íŠ¼(ê·¸ìª½ìœ¼ë¡œ ê°ˆ ì‚¬ëŒì˜ ìˆ˜) \n");
 		printf("	");
 		for(int i=1;i<floor;++i)	printf("%d ",i);
 		cout<<endl;
 		printf("	");
 		for(int i=1;i<floor;++i)	printf("%d ",Button[i]);
-		cout<<endl<<"	¿¤¸®º£ÀÌÅÍ ¾È¿¡ ÀÖ´Â »ç¶÷: "<<InPerson<<endl<<"	¿¤¸®º£ÀÌÅÍ ÇöÀç Ãş: "<<curFloor<<endl;
-		cout<<"	¸ñÇ¥Ãş "<<Goal<<endl<<"	¿¤¸®º£ÀÌÅÍ ¹æÇâ(-1ÀÌ¸é ¾Æ·¡ 1ÀÌ¸é À§ 0ÀÌ¸é Á¤Áö): "<<Dir<<endl<<"	¾ÆÆÄÆ® ÃÑ: "<<floor-1<<endl;
-		cout<<endl<<"	ÀÌ¿ëÇØ ÁÖ¼Å¼­ °¨»çÇÕ´Ï´Ù."<<endl<<endl;
+		cout<<endl<<"	ì—˜ë¦¬ë² ì´í„° ì•ˆì— ìˆëŠ” ì‚¬ëŒ: "<<InPerson<<endl<<"	ì—˜ë¦¬ë² ì´í„° í˜„ì¬ ì¸µ: "<<curFloor<<endl;
+		cout<<"	ëª©í‘œì¸µ "<<Goal<<endl<<"	ì—˜ë¦¬ë² ì´í„° ë°©í–¥(-1ì´ë©´ ì•„ë˜ 1ì´ë©´ ìœ„ 0ì´ë©´ ì •ì§€): "<<Dir<<endl<<"	ì•„íŒŒíŠ¸ ì´: "<<floor-1<<endl;
+		cout<<endl<<"	ì´ìš©í•´ ì£¼ì…”ì„œ ê°ì‚¬í•©ë‹ˆë‹¤."<<endl<<endl;
 		getchar();
 		getchar();
 	}
-	//»ç¶÷ÀÌ ³ª°¡´Â ÇÔ¼ö
+	//ì‚¬ëŒì´ ë‚˜ê°€ëŠ” í•¨ìˆ˜
 	void leavePerson(){		
 		if (Button[curFloor]>0){
-			printf("\n	%d ¸íÀÇ »ç¶÷ÀÌ ³»¸³´Ï´Ù.\n",Button[curFloor]);
+			printf("\n	%d ëª…ì˜ ì‚¬ëŒì´ ë‚´ë¦½ë‹ˆë‹¤.\n",Button[curFloor]);
 			if(InPerson>0) InPerson -= Button[curFloor];
 			Button[curFloor] = 0;		
 		}
 		//display("leavePerson");
 	}
 
-	//»ç¶÷ÀÌ µé¾î¿À´Â ÇÔ¼ö
+	//ì‚¬ëŒì´ ë“¤ì–´ì˜¤ëŠ” í•¨ìˆ˜
 	void getInPerson() { 
 		if(Floor[curFloor]>0){
-			printf("\n	»ç¶÷ÀÌ Å¾´Ï´Ù. ¹öÆ°À» ÇÏ³ª¸¸ ÀÔ·ÂÇØ ÁÖ¼¼¿ä<<");
+			printf("\n	ì‚¬ëŒì´ íƒ‘ë‹ˆë‹¤. ë²„íŠ¼ì„ í•˜ë‚˜ë§Œ ì…ë ¥í•´ ì£¼ì„¸ìš”<<");
 			if(getButton(Button,(++InPerson-(InPerson-1)))){
 				display("finish");
 				exit(1);
@@ -168,44 +168,44 @@ public:
 
 	void moving(){
 
-		//ÇöÀç Ãş Ãâ·Â
-		cout<<"ÇöÀç ÃşÀº "<<curFloor<<"Ãş ÀÔ´Ï´Ù. \n";
+		//í˜„ì¬ ì¸µ ì¶œë ¥
+		cout<<"í˜„ì¬ ì¸µì€ "<<curFloor<<"ì¸µ ì…ë‹ˆë‹¤. \n";
 		//display("whatEver");
-		//¸ñÇ¥Ãş¿¡ µµÂøÇÏ°í ¹æÇâÀÌ 0ÀÎ ¾Æ´Ñ Ã³À½ ¸ñÇ¥Ãş¿¡ µµÂøÇßÀ»¶§
+		//ëª©í‘œì¸µì— ë„ì°©í•˜ê³  ë°©í–¥ì´ 0ì¸ ì•„ë‹Œ ì²˜ìŒ ëª©í‘œì¸µì— ë„ì°©í–ˆì„ë•Œ
 		if(Goal == curFloor && Dir!=0)
 		{
-			printf("	¸ñÇ¥Ãş¿¡ µµÂøÇÏ¿´½À´Ï´Ù.");
-			Dir = 0;		//¸ñÇ¥Ãş¿¡ µµÂøÇÏ¿´±â ¶§¹®¿¡ ¹æÇâÀº ´õÀÌ»ó ¾ø´Ù.
+			printf("	ëª©í‘œì¸µì— ë„ì°©í•˜ì˜€ìŠµë‹ˆë‹¤.");
+			Dir = 0;		//ëª©í‘œì¸µì— ë„ì°©í•˜ì˜€ê¸° ë•Œë¬¸ì— ë°©í–¥ì€ ë”ì´ìƒ ì—†ë‹¤.
 			
-			//¿¤¸®º£ÀÌÅÍ¿¡¼­ ¸ñÇ¥Ãş¿¡¼­ ³»¸®´Â »ç¶÷ÀÌ ÀÖ´Â °æ¿ì
+			//ì—˜ë¦¬ë² ì´í„°ì—ì„œ ëª©í‘œì¸µì—ì„œ ë‚´ë¦¬ëŠ” ì‚¬ëŒì´ ìˆëŠ” ê²½ìš°
 			leavePerson();
 			for(int i=0;i<floor;++i) Button[i] = 0;
 
-			//¸¸¾à ±× Ãş¿¡ Å¸´Â »ç¶÷ÀÌ ÀÖ´Â °æ¿ì
+			//ë§Œì•½ ê·¸ ì¸µì— íƒ€ëŠ” ì‚¬ëŒì´ ìˆëŠ” ê²½ìš°
 			if(Floor[curFloor]>0)
 			{
-				cout<<"»ç¶÷ÀÌ Å¾´Ï´Ù.\n"<<endl;
+				cout<<"ì‚¬ëŒì´ íƒ‘ë‹ˆë‹¤.\n"<<endl;
 				++InPerson;
 				Floor[curFloor]=0;
 			}
 
-			//Å¸°í ÀÖ´Â »ç¶÷¼ö¸¸Å­ Àç ÀÔ·Â ¹Ş´Â´Ù.
+			//íƒ€ê³  ìˆëŠ” ì‚¬ëŒìˆ˜ë§Œí¼ ì¬ ì…ë ¥ ë°›ëŠ”ë‹¤.
 			if(InPerson>0)	
 			{
-				printf("\n	%d¸¸Å­ ¹öÆ°À» ÀçÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À <<",InPerson);	
+				printf("\n	%dë§Œí¼ ë²„íŠ¼ì„ ì¬ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤ <<",InPerson);	
 				if(getButton(Button,InPerson)){
 					display("finish");
 					exit(1);
 				}
 			}
-				setDefaultGoal();		//¸¸¾à ´Ù¸¥ °¡´ÂÃşÀÌ ¾ø´Ù¸é ÀÌ°É·Î ¸ñÇ¥Ãş ¼³Á¤
-		}else{ //¸ñÇ¥ÃşÀÌ ¾Æ´Ñ Ãş¿¡ µµÂøÇÑ °æ¿ì
+				setDefaultGoal();		//ë§Œì•½ ë‹¤ë¥¸ ê°€ëŠ”ì¸µì´ ì—†ë‹¤ë©´ ì´ê±¸ë¡œ ëª©í‘œì¸µ ì„¤ì •
+		}else{ //ëª©í‘œì¸µì´ ì•„ë‹Œ ì¸µì— ë„ì°©í•œ ê²½ìš°
 			leavePerson();
 			getInPerson();
 		}
 
-		cout<<"	¿¤¸®º£ÀÌÅÍ¸¦ Å» ÃşÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä << ";
-		if(getFloor(Floor,Dir,curFloor,Goal,floor)){ //ÃşÀÔ·Â
+		cout<<"	ì—˜ë¦¬ë² ì´í„°ë¥¼ íƒˆ ì¸µì„ ì…ë ¥í•´ì£¼ì„¸ìš” << ";
+		if(getFloor(Floor,Dir,curFloor,Goal,floor)){ //ì¸µì…ë ¥
 			display("finish");
 			exit(1);
 		}
