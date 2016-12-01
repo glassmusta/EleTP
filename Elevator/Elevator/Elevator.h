@@ -28,7 +28,7 @@ public:
 			if(q>=floor && tmp != '\n') {cout<<"입력값이 너무 큽니다."<<endl;continue;}
 
 			//방향 설정
-			if(i==0 && q<floor){
+			if(i==0 && q<floor && curFloor!=q){
 				if(tmp == '\n') Dir = Dir; //아무것도 입력하지 않은 경우
 				else if(q>curFloor) Dir = 1;
 				else if(q<curFloor) Dir = -1;
